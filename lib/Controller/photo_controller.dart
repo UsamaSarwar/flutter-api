@@ -8,7 +8,7 @@ class PhotoController extends GetxController {
 
   Future fetchImages() async {
     await http.Client().get(
-      Uri.parse('https://jsonplaceholder.typicode.com/photos'),
+      Uri.parse('https://picsum.photos/v2/list'),
       headers: {"Accept": "application/json"},
     ).then((response) {
       if (response.statusCode.isEqual(200)) {

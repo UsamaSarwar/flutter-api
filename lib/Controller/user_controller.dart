@@ -14,10 +14,12 @@ class UserController extends GetxController {
       if (response.statusCode.isEqual(200)) {
         usersList.value = userFromJson(response.body);
       } else {
-        Get.showSnackbar(GetSnackBar(
-          title: "Something went wrong",
-          message: "API Status Code: ${response.statusCode}",
-        ));
+        Get.showSnackbar(
+          GetSnackBar(
+            title: "Something went wrong",
+            message: "API Status Code: ${response.statusCode}",
+          ),
+        );
         throw Exception('Failed to load users');
       }
     });

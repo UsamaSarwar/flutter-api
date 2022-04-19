@@ -1,7 +1,8 @@
 // To parse this JSON data, do
 //
-//     final image = imageFromJson(jsonString);
+//     final photo = photoFromJson(jsonString);
 
+import 'package:meta/meta.dart';
 import 'dart:convert';
 
 List<Photo> photoFromJson(String str) => List<Photo>.from(json.decode(str).map((x) => Photo.fromJson(x)));
@@ -10,32 +11,36 @@ String photoToJson(List<Photo> data) => json.encode(List<dynamic>.from(data.map(
 
 class Photo {
     Photo({
-        required this.albumId,
         required this.id,
-        required this.title,
+        required this.author,
+        required this.width,
+        required this.height,
         required this.url,
-        required this.thumbnailUrl,
+        required this.downloadUrl,
     });
 
-    final int albumId;
-    final int id;
-    final String title;
+    final String id;
+    final String author;
+    final int width;
+    final int height;
     final String url;
-    final String thumbnailUrl;
+    final String downloadUrl;
 
     factory Photo.fromJson(Map<String, dynamic> json) => Photo(
-        albumId: json["albumId"],
         id: json["id"],
-        title: json["title"],
+        author: json["author"],
+        width: json["width"],
+        height: json["height"],
         url: json["url"],
-        thumbnailUrl: json["thumbnailUrl"],
+        downloadUrl: json["download_url"],
     );
 
     Map<String, dynamic> toJson() => {
-        "albumId": albumId,
         "id": id,
-        "title": title,
+        "author": author,
+        "width": width,
+        "height": height,
         "url": url,
-        "thumbnailUrl": thumbnailUrl,
+        "download_url": downloadUrl,
     };
 }

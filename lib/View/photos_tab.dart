@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,11 +28,25 @@ class PhotosTab extends StatelessWidget {
                   itemCount: _photoController.imagesList.length,
                   itemBuilder: (context, index) {
                     return Card(
-                      child: Image.network(
-                        _photoController.imagesList[index].url,
-                        fit: BoxFit.contain,
-                        scale: 1,
+                      child: CachedNetworkImage(
+                        // imageUrl: _photoController.imagesList[index].url,
+                        imageUrl: 'https://usamasarwar.github.io/favicon.png', // Testing URL
+                        placeholder: (context, url) =>
+                            const Center(child: CircularProgressIndicator.adaptive()),
+                        errorWidget: (context, url, error) =>
+                            const Center(child: Icon(Icons.error)),
                       ),
+
+                      //* Alternative Way to fetch Images
+                      // child: Image.network(
+                      //   _photoController.imagesList[index].url,
+                      //   fit: BoxFit.contain,
+                      //   scale: 1,
+                      //   errorBuilder: (BuildContext context, Object exception,
+                      //       StackTrace? stackTrace) {
+                      //     return const Center(child: Icon(Icons.error));
+                      //   },
+                      // ),
                     );
                   },
                 ),
